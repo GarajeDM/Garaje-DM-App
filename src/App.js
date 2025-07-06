@@ -293,19 +293,42 @@ const App = () => {
         )}
 
         {currentView === 'products' && (
-          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-            <div className="container mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
-                <Box size={32} className="inline-block mr-3 text-indigo-600" /> Todos Nuestros Productos
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                {products.map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            </div>
-          </section>
-        )}
+  <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div className="container mx-auto">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
+        <Box size={32} className="inline-block mr-3 text-indigo-600" /> Todos Nuestros Productos
+      </h2>
+
+      {/* Sección de Productos Nuevos */}
+      <h3 className="text-2xl font-bold text-gray-700 mb-8 mt-12 text-center">Productos Nuevos</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-12">
+        {newProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+
+      {/* Sección de Productos Usados */}
+      <h3 className="text-2xl font-bold text-gray-700 mb-8 text-center">Productos Usados</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {usedProducts.map(product => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+
+      {/* Mensaje si no hay productos de un tipo (opcional, pero útil) */}
+      {newProducts.length === 0 && (
+        <p className="text-center text-gray-600 mt-4">No hay productos nuevos disponibles en este momento.</p>
+      )}
+      {usedProducts.length === 0 && (
+        <p className="text-center text-gray-600 mt-4">No hay productos usados disponibles en este momento.</p>
+      )}
+      {products.length === 0 && (
+        <p className="text-center text-gray-600 mt-4">No hay productos en general.</p>
+      )}
+
+    </div>
+  </section>
+)}
 
         {currentView === 'cart' && (
           <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
